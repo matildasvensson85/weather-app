@@ -35,8 +35,54 @@ export const App = () => {
     fetchWeatherForecast();
   }, []);
 
+  const formattedDateOptions = {
+    // weekday: 'long',
+    // year: 'numeric',
+    month: 'short',
+    day: 'numeric'
+  };
+
+  function formatTime(timestamp) {
+    return new Date(timestamp * 1000).toLocaleTimeString([], { timeStyle: 'short' });
+  }
+
+  function formatDate(timestamp) {
+    return new Date(timestamp * 1000).toLocaleDateString('en-US', formattedDateOptions);
+  }
+
   return (
     <>
+      {currentWeather && currentWeather.weather && currentWeather.weather[0] && (
+        <div>
+          <h1>{currentWeather.name}</h1>
+          <h2>Today</h2>
+          <p>{formatDate(currentWeather.dt)}</p>
+          <p>{currentWeather.weather[0].main}</p>
+          <p>{Math.floor(currentWeather.main.temp)} °C</p>
+          <p>Sunrise: {formatTime(currentWeather.sys.sunrise)}</p>
+          <p>Sunset: {formatTime(currentWeather.sys.sunset)}</p>
+        </div>
+      )}
+
+      <div>
+        <h2>Forecast </h2>
+        {weatherForecast?.list?.length ? (
+          weatherForecast.list
+            .filter((item) => item.dt_txt.includes('12:00'))
+            .map((item) => (
+              <div key={item.dt}>
+                <p>{formatDate(item.dt)}</p>
+                <p>{Math.floor(item.main.temp)} °C</p>
+                {/* <p>{new Date(item.dt_txt)}</p> */}
+                <p>{item.weather[0]?.description}</p>
+                <p>feels like {Math.floor(item.main.feels_like)}</p>
+              </div>
+            ))
+        ) : (
+          <p>No forecast available</p>
+        )}
+      </div>
     </>
   )
 };
+

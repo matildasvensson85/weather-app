@@ -22,6 +22,7 @@
   },
   "plugins": ["react-hooks"],
   "rules": {
+    "prefer-destructuring": "off",
     "react/function-component-definition": [
       2,
       {

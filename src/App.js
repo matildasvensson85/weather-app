@@ -88,7 +88,7 @@ export const App = () => {
     return str.charAt(0).toUpperCase() + str.slice(1);
   }
 
-  const PageWrapper = styled.div`
+  const PageContainer = styled.div`
     background-color: #F7D5DF;
     display: flex;
     flex-direction: column;
@@ -98,7 +98,7 @@ export const App = () => {
     border: 1px solid blue;
   `;
 
-  const ContentWrapper = styled.div`
+  const MainContent = styled.div`
     /* margin: 50px;
     background-color: #f77df5;
     width: 500px; */
@@ -112,7 +112,7 @@ export const App = () => {
     justify-content: center; */
   `;
 
-  const HeaderWrapper = styled.div`
+  const HeaderSection = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -125,7 +125,7 @@ export const App = () => {
     margin: 0;
     `
 
-  const Select = styled.select`
+  const CitySelector = styled.select`
     border: 1px solid #1D47B2;
     background-color: transparent;
     height: 40px;
@@ -133,7 +133,7 @@ export const App = () => {
     font-size: 16px;
   `
 
-  const AccordionHeader = styled.div`
+  const HeaderContent = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -143,21 +143,23 @@ export const App = () => {
     /* margin-bottom: 3px ; */
   `
 
-  const DateWrapper = styled.div`
+  const DateInfo = styled.div`
     display: flex;
     flex-direction: row;
     /* align-items: center; */
     align-items: baseline;
     /* margin-top: 30px; */
   `
+  const ForecastContainer = styled.div`
+  `
 
-  const AccordionContent = styled.div`
+  const ForecastInfo = styled.div`
     display: flex;
     margin-top: 25px;
     /* justify-content: space-between; */
   `
 
-  const CurrentWeatherWrapper = styled.div`
+  const CurrentWeatherInfo = styled.div`
     /* width: 50%; */
     display: flex;
     flex-direction: column;
@@ -165,7 +167,7 @@ export const App = () => {
     margin-top: 25px;
   `
 
-  const OneLineContainer = styled.div`
+  const InlineContainer = styled.div`
     /* width: 50%; */
     display: flex;
     /* margin: 0; */
@@ -185,39 +187,39 @@ export const App = () => {
   `
 
   return (
-    <PageWrapper>
-      <ContentWrapper>
+    <PageContainer>
+      <MainContent>
         {currentWeather && currentWeather.weather && currentWeather.weather[0] && (
           <>
-            <HeaderWrapper>
+            <HeaderSection>
               <H1>{currentWeather.name}</H1>
-              <Select
+              <CitySelector
                 value={selectedCity}
                 onChange={handleSelectCityChange}>
                 <option value="" disabled>Select location</option>
                 <option value="option1">Option 1</option>
                 <option value="option2">Option 2</option>
                 <option value="option3">Option 3</option>
-              </Select>
-            </HeaderWrapper>
+              </CitySelector>
+            </HeaderSection>
 
-            <AccordionHeader>
-              <DateWrapper>
+            <HeaderContent>
+              <DateInfo>
                 <H2>Today</H2>
                 <Paragraph>{formatDate(currentWeather.dt)}</Paragraph>
-              </DateWrapper>
+              </DateInfo>
               <p>{Math.floor(currentWeather.main.temp)} °C</p>
-            </AccordionHeader>
-            <CurrentWeatherWrapper>
-              <OneLineContainer>
+            </HeaderContent>
+            <CurrentWeatherInfo>
+              <InlineContainer>
                 <Paragraph>{currentWeather.weather[0].main}</Paragraph>
                 <Paragraph>,  feels like {Math.floor(currentWeather.main.feels_like)}</Paragraph>
-              </OneLineContainer>
-              <OneLineContainer>
+              </InlineContainer>
+              <InlineContainer>
                 <Paragraph>Sunrise: {formatTime(currentWeather.sys.sunrise)}</Paragraph>
                 <Paragraph>&nbsp;| Sunset: {formatTime(currentWeather.sys.sunset)}</Paragraph>
-              </OneLineContainer>
-            </CurrentWeatherWrapper>
+              </InlineContainer>
+            </CurrentWeatherInfo>
           </>
         )}
 
@@ -230,25 +232,25 @@ export const App = () => {
             // .map((item) => (
             dailyNoonForecasts.map((item) => (
               // {dailyNoonForecasts.map((item) => (
-              <div key={item.dt}>
-                <AccordionHeader>
-                  <DateWrapper>
+              <ForecastContainer key={item.dt}>
+                <HeaderContent>
+                  <DateInfo>
                     <H2>{formatWeekday(currentWeather.dt, item.dt)}</H2>
                     <Paragraph>{formatDate(item.dt)}</Paragraph>
-                  </DateWrapper>
+                  </DateInfo>
                   <p>{Math.floor(item.main.temp)} °C</p>
-                </AccordionHeader>
-                <AccordionContent>
+                </HeaderContent>
+                <ForecastInfo>
                   <Paragraph>{capitalizeFirstLetter(item.weather[0]?.description)}</Paragraph>
                   <Paragraph>, feels like {Math.floor(item.main.feels_like)}</Paragraph>
-                </AccordionContent>
-              </div>
+                </ForecastInfo>
+              </ForecastContainer>
             ))
           ) : (
             <p>No forecast available</p>
           )}
         </div>
-      </ContentWrapper>
-    </PageWrapper>
+      </MainContent>
+    </PageContainer>
   );
 };

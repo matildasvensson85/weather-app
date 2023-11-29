@@ -1,5 +1,4 @@
 
-
 export function formatTime(timestamp) {
   return new Date(timestamp * 1000).toLocaleTimeString([], {
     timeStyle: 'short'

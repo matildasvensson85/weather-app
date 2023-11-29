@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
+export const CityHeader = ({ cityName, selectedCity, handleSelectCityChange }) => {
   const HeaderSection = styled.div`
     display: flex;
     flex-direction: row;
@@ -8,6 +9,7 @@ import styled from 'styled-components';
     align-items: center;
     margin-bottom: 40px;
   `
+
   const H1 = styled.h1`
     font-size: 30px;
     margin: 0;
@@ -20,7 +22,7 @@ import styled from 'styled-components';
     color: black;
     font-size: 16px;
   `
-export const CityHeader = ({ cityName, selectedCity, handleSelectCityChange }) => {
+
   return (
     <HeaderSection>
       <H1>{cityName}</H1>

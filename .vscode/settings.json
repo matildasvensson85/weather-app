@@ -1,4 +1,17 @@
 {
-  "eslint.alwaysShowStatus": "error",
-  // Add other settings as needed
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "rules": {
+    "no-unused-vars": "off"
+  },
+  "eslint.alwaysShowStatus": false,
+  "eslint.notifyOnRuleChange": "off",
+  "eslint.probe": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ],
+  "eslint.run": "manual"
 }

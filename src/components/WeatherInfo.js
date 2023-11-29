@@ -1,25 +1,25 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 import { formatTime } from 'utils/dateUtils';
 
-const CurrentWeatherInfo = styled.div`
-  /* width: 50%; */
-  display: flex;
-  flex-direction: column;
-  /* margin: 0; */
-  margin-top: 25px;
-`
-
-const InlineContainer = styled.div`
-display: flex;
-`;
-
-const Paragraph = styled.p`
-margin: 0 0 12px 0;
-`;
-
 export const WeatherInfo = ({ currentWeather }) => {
+  const CurrentWeatherInfo = styled.div`
+    /* width: 50%; */
+    display: flex;
+    flex-direction: column;
+    /* margin: 0; */
+    margin-top: 25px;
+  `
+
+  const InlineContainer = styled.div`
+    display: flex;
+  `
+
+  const Paragraph = styled.p`
+    margin: 0 0 12px 0;
+  `
+
   return (
     <CurrentWeatherInfo>
       <InlineContainer>

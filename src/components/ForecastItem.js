@@ -23,7 +23,6 @@ export const ForecastItem = ({ item, currentWeather }) => {
 
   const ForecastInfo = styled.div`
       margin-top: 25px;
-      /* justify-content: space-between; */
       display: ${(props) => (props.show ? 'flex' : 'none')};
   `
 
@@ -31,11 +30,15 @@ export const ForecastItem = ({ item, currentWeather }) => {
       display: flex;
       flex-direction: row;
       justify-content: space-between;
-      /* align-items: center; */
       align-items: baseline;
       border-bottom: 1px solid black;
-      /* margin-bottom: 3px ; */
       cursor: pointer;
+      transition: 0,4s;
+      width: 100%;
+      /* height: 50px; */
+      :hover {
+        background-color: #B72C72;
+      } 
   `
 
   const DateInfo = styled.div`
@@ -63,7 +66,8 @@ export const ForecastItem = ({ item, currentWeather }) => {
           <H2>{formatWeekday(currentWeather.dt, item.dt)}</H2>
           <Paragraph>{formatDate(item.dt)}</Paragraph>
         </DateInfo>
-        <p>{Math.floor(item.main.temp)} °C</p>
+        <Paragraph>{Math.floor(item.main.temp)} °C</Paragraph>
+        {/* <button type="button">{showForecast ? '▲' : '▼'}</button> */}
       </HeaderContent>
       <ForecastInfo show={showForecast}>
         <Paragraph>{capitalizeFirstLetter(item.weather[0]?.description)}</Paragraph>

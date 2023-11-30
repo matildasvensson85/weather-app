@@ -28,10 +28,7 @@ export const WeatherHeader = ({ currentWeather }) => {
   `
 
   const Paragraph = styled.p`
-    /* margin: 2px; */
-    /* margin-bottom: 1px; */
-    /* margin: 0; */
-    margin: 0 0 12px 0;
+    margin: 0 35px 12px 0;
    `
 
   return (
@@ -40,7 +37,10 @@ export const WeatherHeader = ({ currentWeather }) => {
         <H2>Today</H2>
         <Paragraph>{formatDate(currentWeather.dt)}</Paragraph>
       </DateInfo>
-      <p>{Math.floor(currentWeather.main.temp)} °C</p>
+      {/* <DateInfo> */}
+      <Paragraph>{Math.floor(currentWeather.main.temp)} °C</Paragraph>
+      {/* <button type="button">▼</button> */}
+      {/* </DateInfo> */}
     </HeaderContent>
   );
 }

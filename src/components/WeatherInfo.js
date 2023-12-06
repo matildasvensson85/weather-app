@@ -9,7 +9,7 @@ export const WeatherInfo = ({ currentWeather }) => {
     display: flex;
     flex-direction: column;
     /* margin: 0; */
-    margin-top: 25px;
+    /* margin-top: 25px; */
   `
 
   const InlineContainer = styled.div`

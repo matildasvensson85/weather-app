@@ -10,7 +10,7 @@ export const WeatherHeader = ({ currentWeather }) => {
     justify-content: space-between;
     /* align-items: center; */
     align-items: baseline;
-    border-bottom: 1px solid black;
+    /* border-bottom: 1px solid black; */
     /* margin-bottom: 3px ; */
     `
 
@@ -28,7 +28,7 @@ export const WeatherHeader = ({ currentWeather }) => {
   `
 
   const Paragraph = styled.p`
-    margin: 0 35px 12px 0;
+    /* margin: 0 35px 12px 0; */
    `
 
   return (

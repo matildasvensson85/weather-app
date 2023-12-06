@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronUp, faChevronDown } from '@fortawesome/free-solid-svg-icons';
 
 import { formatDate, formatWeekday } from 'utils/dateUtils';
 
@@ -22,7 +24,7 @@ export const ForecastItem = ({ item, currentWeather }) => {
   `
 
   const ForecastInfo = styled.div`
-      margin-top: 25px;
+      margin-top: 0px;
       display: ${(props) => (props.show ? 'flex' : 'none')};
   `
 
@@ -31,10 +33,11 @@ export const ForecastItem = ({ item, currentWeather }) => {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      border-bottom: 1px solid black;
+      /* border-bottom: 1px solid black; */
       cursor: pointer;
       width: 100%;
       transition: background-color 0.4s ease;
+      margin: 0;
       &:hover {
         background-color: #B72C72;
       }
@@ -43,9 +46,7 @@ export const ForecastItem = ({ item, currentWeather }) => {
   const DateInfo = styled.div`
       display: flex;
       flex-direction: row;
-      /* align-items: center; */
       align-items: baseline;
-      /* margin-top: 30px; */
   `
 
   const H2 = styled.h2`
@@ -54,63 +55,25 @@ export const ForecastItem = ({ item, currentWeather }) => {
   `;
 
   const Paragraph = styled.p`
-      margin: 0 0 12px 0;
+      margin: 0 0 0 0;
   `
-  // const AccordionHeader = styled.button`
-  //   cursor: pointer;
-  //   background-color: grey;
-  //   transition: 0,4s;
-  //   border: none;
-  //   width: 100%;
-  //   max-width: 600px;
-  //   height: 30px;
-  //   /* margin: 0 0 10px 0; */
-  //     :hover {
-  //     background-color: #B72C72;
-  //     }
-  // `
-  // const AccordionContent = styled.div`
-  //   overflow: hidden;
-  //   /* max-height: ${(props) => (props.open ? '100%' : '0')}; */
-  //   display: ${(props) => (props.show ? 'flex' : 'none')};
-  //   width: 100%;
-  // `
-
-  // const Title = styled.p`
-  //   margin: 0;
-  //   color: white;
-  //   font-size: 16px;
-  // `
 
   return (
-    <>
-      <ForecastContainer key={item.dt}>
-        <HeaderContent onClick={toggleForecast}>
-          <DateInfo>
-            <button type="button">{showForecast ? '▲' : '▼'}</button>
-            <H2>{formatWeekday(currentWeather.dt, item.dt)}</H2>
-            <Paragraph>{formatDate(item.dt)}</Paragraph>
-          </DateInfo>
-          <Paragraph>{Math.floor(item.main.temp)} °C</Paragraph>
-        </HeaderContent>
-        <ForecastInfo show={showForecast}>
-          <Paragraph>{capitalizeFirstLetter(item.weather[0]?.description)}</Paragraph>
-          <Paragraph>, feels like {Math.floor(item.main.feels_like)}</Paragraph>
-        </ForecastInfo>
-      </ForecastContainer>
-
-      {/* <AccordionHeader onClick={toggleForecast}>
+    <ForecastContainer key={item.dt}>
+      <HeaderContent onClick={toggleForecast}>
         <DateInfo>
-          <button type="button">{showForecast ? '▲' : '▼'}</button>
+          {showForecast
+            ? <FontAwesomeIcon icon={faChevronUp} style={{ marginRight: '5px' }} />
+            : <FontAwesomeIcon icon={faChevronDown} style={{ marginRight: '5px' }} />}
           <H2>{formatWeekday(currentWeather.dt, item.dt)}</H2>
           <Paragraph>{formatDate(item.dt)}</Paragraph>
         </DateInfo>
         <Paragraph>{Math.floor(item.main.temp)} °C</Paragraph>
-      </AccordionHeader>
-      <AccordionContent show={showForecast}>
+      </HeaderContent>
+      <ForecastInfo show={showForecast}>
         <Paragraph>{capitalizeFirstLetter(item.weather[0]?.description)}</Paragraph>
         <Paragraph>, feels like {Math.floor(item.main.feels_like)}</Paragraph>
-      </AccordionContent> */}
-    </>
+      </ForecastInfo>
+    </ForecastContainer>
   )
 }

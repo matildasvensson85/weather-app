@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { CityHeader } from 'components/CityHeader'
 import { WeatherHeader } from 'components/WeatherHeader'
 import { WeatherInfo } from 'components/WeatherInfo'
-// import { ForecastItem } from './components/ForecastItem'
+import { ForecastItem } from './components/ForecastItem'
 
 const API_KEY = '4b089f476bd9961f1c727a0625472b1f'
 const cities = ['Stockholm,Sweden', 'London,GB', 'New York,US', 'Tokyo,JP', 'Paris,FR']
@@ -35,14 +35,13 @@ export const App = () => {
   // console.log('weatherForecast', weatherForecast)
   // // const [londonWeather, setLondonWeather] = useState()
   // // const [londonForecast, setLondonForecast] = useState()
-  const [currentCity, setCurrentCity] = useState('');
-  console.log(currentCity)
+  const [currentCity, setCurrentCity] = useState('Stockholm,Sweden');
+  console.log('current city', currentCity)
   const [currentWeather, setCurrentWeather] = useState({});
   console.log('currentweather', currentWeather[currentCity])
   console.log('harder', currentWeather)
   const [weatherForecast, setWeatherForecast] = useState({});
   console.log('forecast', weatherForecast)
-  // const [currentCity, setCurrentCity] = useState('Stockholm');
 
   // const getWeather = (city) => {
   //   fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}`)
@@ -164,17 +163,19 @@ export const App = () => {
     cities.forEach((city) => getWeather(city));
   }, [])
 
-  useEffect(() => {
-    setCurrentCity('Stockholm,Sweden')
-  }, [])
+  // useEffect(() => {
+  //   setCurrentCity('Stockholm,Sweden')
+  //   // setCurrentCity('London,GB')
+  // }, [])
 
-  // const dailyNoonForecasts =
-  // weatherForecast?.list?.filter((item) => item.dt_txt.includes('12:00'));
+  const dailyNoonForecasts = weatherForecast[currentCity]?.data?.list?.filter((item) => item.dt_txt.includes('12:00'))
+  console.log('dailynoon', dailyNoonForecasts)
 
   const handleSelectCityChange = (event) => {
-    const value = event.target.value;
-    // setCurrentCity(value);
-    console.log('Selected city: ', value);
+    console.log('event', event.target.value)
+    // const value = event.target.value;
+    setCurrentCity(event.target.value);
+    // console.log('Selected city: ', value);
   }
 
   return (
@@ -185,23 +186,22 @@ export const App = () => {
           <>
             <CityHeader
               cityName={currentWeather[currentCity].data.name}
-              // cityName={currentWeather.currentCity.data.name}
               selectedCity={currentCity}
               handleSelectCityChange={handleSelectCityChange} />
             <WeatherHeader currentWeather={currentWeather[currentCity].data} />
             <WeatherInfo currentWeather={currentWeather[currentCity].data} />
           </>
         )}
-        {/* {dailyNoonForecasts?.length ? (
+        {dailyNoonForecasts?.length ? (
           dailyNoonForecasts.map((item) => (
             <ForecastItem
               key={item.dt}
               item={item}
-              currentWeather={weatherData[currentCity]?.currentWeather} />
+              currentWeather={weatherForecast[currentCity]?.data} />
           ))
         ) : (
           <p>No forecast available</p>
-        )} */}
+        )}
       </MainContent>
     </PageContainer>
   );

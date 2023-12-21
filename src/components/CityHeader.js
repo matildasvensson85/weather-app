@@ -22,15 +22,22 @@ color: black;
 font-size: 16px;
 `
 
-export const CityHeader = ({ cityName, selectedCity, handleSelectCityChange }) => {
+// export const CityHeader = ({ cityName, selectedCity, handleSelectCityChange }) => {
+export const CityHeader = ({ cityName, handleSelectCityChange }) => {
+  // console.log('selected city', selectedCity)
+  console.log('cityname', cityName)
   return (
     <HeaderSection>
       <H1>{cityName}</H1>
-      <CitySelector value={selectedCity} onChange={handleSelectCityChange}>
-        <option value="" disabled>Select location</option>
-        <option value="option1">Option 1</option>
-        <option value="option2">Option 2</option>
-        <option value="option3">Option 3</option>
+      <CitySelector onChange={handleSelectCityChange}>
+        {/* <CitySelector onChange={handleSelectCityChange}> */}
+        {/* <option value="" disabled>Select location</option> */}
+        <option selected disabled>Select location</option>
+        <option value="London,GB">London</option>
+        <option value="New York,US">New York</option>
+        <option value="Tokyo,JP">Tokyo</option>
+        <option value="Paris,FR">Paris</option>
+        <option value="Stockholm,Sweden">Stockholm</option>
       </CitySelector>
     </HeaderSection>
   )

@@ -3,7 +3,6 @@ import styled from 'styled-components';
 
 import { CityHeader } from 'components/CityHeader'
 import { TodayOverview } from 'components/TodayOverview'
-// import { WeatherInfo } from 'components/WeatherInfo'
 import { ForecastItem } from './components/ForecastItem'
 
 const API_KEY = '4b089f476bd9961f1c727a0625472b1f'
@@ -185,7 +184,6 @@ export const App = () => {
               selectedCity={currentCity}
               handleSelectCityChange={handleSelectCityChange} />
             <TodayOverview currentWeather={currentWeather[currentCity].data} />
-            {/* <WeatherInfo currentWeather={currentWeather[currentCity].data} /> */}
           </>
         )}
         {dailyNoonForecasts?.length ? (

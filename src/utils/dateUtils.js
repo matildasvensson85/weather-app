@@ -6,14 +6,19 @@ export function formatTime(timestamp) {
 }
 
 export function formatDate(timestamp) {
-  const formattedDateOptions = {
-    month: 'short',
-    day: 'numeric'
-  };
-  return new Date(timestamp * 1000).toLocaleDateString(
-    'en-US',
-    formattedDateOptions
-  );
+  // const formattedDateOptions = {
+  //   day: 'numeric',
+  //   month: 'short'
+  // };
+  // return new Date(timestamp * 1000).toLocaleDateString(
+  //   'en-US',
+  //   formattedDateOptions
+  // );
+  const date = new Date(timestamp * 1000);
+  const day = date.getDate();
+  const month = date.toLocaleString('en-US', { month: 'long' });
+
+  return `${day} ${month}`;
 }
 
 export function formatWeekday(currentTimestamp, forecastTimestamp) {

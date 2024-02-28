@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 import { CityHeader } from 'components/CityHeader'
-import { WeatherHeader } from 'components/WeatherHeader'
-import { WeatherInfo } from 'components/WeatherInfo'
+import { TodayOverview } from 'components/TodayOverview'
+// import { WeatherInfo } from 'components/WeatherInfo'
 import { ForecastItem } from './components/ForecastItem'
 
 const API_KEY = '4b089f476bd9961f1c727a0625472b1f'
@@ -171,25 +171,21 @@ export const App = () => {
   const dailyNoonForecasts = weatherForecast[currentCity]?.data?.list?.filter((item) => item.dt_txt.includes('12:00'))
   console.log('dailynoon', dailyNoonForecasts)
 
-  const handleSelectCityChange = (event) => {
-    console.log('event', event.target.value)
-    // const value = event.target.value;
-    setCurrentCity(event.target.value);
-    // console.log('Selected city: ', value);
+  const handleSelectCityChange = (selectedOption) => {
+    setCurrentCity(selectedOption.value);
   }
 
   return (
     <PageContainer>
       <MainContent>
-        {/* {currentWeather && currentWeather.weather && currentWeather.weather[0] && ( */}
         {currentWeather[currentCity]?.data && (
           <>
             <CityHeader
               cityName={currentWeather[currentCity].data.name}
               selectedCity={currentCity}
               handleSelectCityChange={handleSelectCityChange} />
-            <WeatherHeader currentWeather={currentWeather[currentCity].data} />
-            <WeatherInfo currentWeather={currentWeather[currentCity].data} />
+            <TodayOverview currentWeather={currentWeather[currentCity].data} />
+            {/* <WeatherInfo currentWeather={currentWeather[currentCity].data} /> */}
           </>
         )}
         {dailyNoonForecasts?.length ? (

@@ -21,7 +21,7 @@ border: 1px solid blue;
 const MainContent = styled.div`
 width: 100%;
 max-width: 400px;
-background-color: white;
+background-color: #E8E8E8;
 border-radius: 30px;
 padding: 50px;
 border: 1px solid red;

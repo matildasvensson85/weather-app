@@ -6,7 +6,6 @@ import { faChevronUp, faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import { formatDate, formatWeekday } from 'utils/dateUtils';
 
 const ContentWrapper = styled.div`
-
 `
 
 const AccordionHeader = styled.div`
@@ -14,24 +13,19 @@ const AccordionHeader = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  /* flex-direction: column; */
-  /* border-bottom: 1px solid black; */
   cursor: pointer;
   width: 100%;
   transition: background-color 0.4s ease;
   margin: 0;
-  /* background-color: ${(props) => (props.showForecast ? 'red' : 'green')}; */
+  background-color: ${(props) => (props.show ? '#1F479F' : 'none')};
   &:hover {
-    background-color: #B72C72;
+    background-color: Tomato;
   }
  `
 
 const DateWrapper = styled.div`
 display: flex;
 flex-direction: row;
-/* align-items: baseline; */
-/* margin-bottom: 8px;
-margin-top: 8px; */
 margin: 8px 0 8px 0;
 `
 const H2 = styled.h2`
@@ -40,6 +34,8 @@ const H2 = styled.h2`
   font-weight: bold;
   color: #1F479F; 
   font-family: 'Helvetica', sans-serif;
+  color: ${(props) => (props.show ? 'white' : 'none')};
+  margin-left: ${(props) => (props.show ? '5px' : '0px')};
 `;
 
 const DateText = styled.span`
@@ -47,18 +43,12 @@ const DateText = styled.span`
   margin-right: 10px;
   color: #1F479F; 
   font-family: 'Helvetica', sans-serif;
+  color: ${(props) => (props.show ? 'white' : 'none')};
 `;
-// const DateInfo = styled.div`
-//   display: flex;
-//   flex-direction: row;
-//   align-items: baseline;
-// `
 
 const AccordionContent = styled.div`
   padding: 8px 0 8px 0;
-  /* border: 1px solid red; */
   background-color: #1F479F; 
-  /* font-color: 'red'; */
   display: ${(props) => (props.show ? 'flex' : 'none')};
 `
 const WeatherText = styled.span`
@@ -90,20 +80,15 @@ export const ForecastItem = ({ item, currentWeather }) => {
 
   return (
     <ContentWrapper key={item.dt}>
-      <AccordionHeader onClick={toggleForecast}>
-        {/* <DateInfo> */}
+      <AccordionHeader onClick={toggleForecast} show={showForecast}>
         <DateWrapper>
-          <H2>{formatWeekday(currentWeather.dt, item.dt)}</H2>
-          <DateText>{formatDate(item.dt)}</DateText>
+          <H2 show={showForecast}>{formatWeekday(currentWeather.dt, item.dt)}</H2>
+          <DateText show={showForecast}>{formatDate(item.dt)}</DateText>
         </DateWrapper>
         {showForecast
-          ? <FontAwesomeIcon icon={faChevronUp} style={{ color: '#1F479F', fontSize: '14px' }} />
-          : <FontAwesomeIcon icon={faChevronDown} style={{ color: '#1F479F', fontSize: '14px' }} />}
-        {/* <Line /> */}
-        {/* </DateInfo> */}
-        {/* <Paragraph>{Math.floor(item.main.temp)} °C</Paragraph> */}
+          ? <FontAwesomeIcon icon={faChevronUp} style={{ color: 'white', fontSize: '14px', marginRight: '5px' }} />
+          : <FontAwesomeIcon icon={faChevronDown} style={{ color: '#1F479F', fontSize: '14px', marginRight: '5px' }} />}
       </AccordionHeader>
-
       <AccordionContent show={showForecast}>
         <WeatherText>{capitalizeFirstLetter(item.weather[0]?.description)}</WeatherText>
         <WeatherText>, feels like {Math.floor(item.main.feels_like)}</WeatherText>

@@ -64,8 +64,7 @@ const Line = styled.div`
   height: 1px;
   background-color: #1F479F; 
   width: 100%;
-
-`;
+`
 
 export const TodayOverview = ({ currentWeather }) => {
   return (

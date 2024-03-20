@@ -81,6 +81,7 @@ export const ForecastItem = ({ item, currentWeather }) => {
   return (
     <ContentWrapper key={item.dt}>
       <AccordionHeader onClick={toggleForecast} show={showForecast}>
+        {/* <DateInfo> */}
         <DateWrapper>
           <H2 show={showForecast}>{formatWeekday(currentWeather.dt, item.dt)}</H2>
           <DateText show={showForecast}>{formatDate(item.dt)}</DateText>
@@ -88,7 +89,9 @@ export const ForecastItem = ({ item, currentWeather }) => {
         {showForecast
           ? <FontAwesomeIcon icon={faChevronUp} style={{ color: 'white', fontSize: '14px', marginRight: '5px' }} />
           : <FontAwesomeIcon icon={faChevronDown} style={{ color: '#1F479F', fontSize: '14px', marginRight: '5px' }} />}
+
       </AccordionHeader>
+
       <AccordionContent show={showForecast}>
         <WeatherText>{capitalizeFirstLetter(item.weather[0]?.description)}</WeatherText>
         <WeatherText>, feels like {Math.floor(item.main.feels_like)}</WeatherText>

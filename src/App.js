@@ -9,13 +9,23 @@ const API_KEY = '4b089f476bd9961f1c727a0625472b1f'
 const cities = ['Stockholm,Sweden', 'London,GB', 'New York,US', 'Tokyo,JP', 'Paris,FR']
 
 const PageContainer = styled.div`
-background-color: #F7D5DF;
-display: flex;
-flex-direction: column;
-align-items: center;
-padding: 50px 20px 20px 20px;
-min-height: 100vh;
-border: 1px solid blue;
+  /* background-image: url('/images/bluish.jpg'); */
+  /* background-image: url('/images/dark-clouds.jpg'); */
+  /* background-image: url('/images/golden-clouds.jpg'); */
+  /* background-image: url('/images/soft-clouds.jpg'); */
+  /* background-image: url('/images/sun-and-rain.jpg'); */
+  /* background-image: url('/images/white-clouds.jpg'); */
+  background-image: url(${(props) => props.weatherImage});
+
+  background-size: cover;
+  background-position: center;
+  /* background-color: #F7D5DF; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 50px 20px 20px 20px;
+  min-height: 100vh;
+  /* border: 10px solid blue; */
 `
 
 const MainContent = styled.div`
@@ -41,6 +51,7 @@ export const App = () => {
   console.log('harder', currentWeather)
   const [weatherForecast, setWeatherForecast] = useState({});
   console.log('forecast', weatherForecast)
+  const [weatherImage, setWeatherImage] = useState('')
 
   // const getWeather = (city) => {
   //   fetch(`http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}`)
@@ -167,12 +178,46 @@ export const App = () => {
   //   // setCurrentCity('London,GB')
   // }, [])
 
+  // funktion för att sätta weather image
+  // if (currentWeather?.data?.weather[0].main === 'Clouds') {
+  //   setWeatherImage('/images/white-clouds.jpg')
+  //   console.log('it is so')
+  // } else {
+  //   console.log(console.log(currentWeather))
+  // }
+  }
+
+  console.log(weatherImage)
+
   const dailyNoonForecasts = weatherForecast[currentCity]?.data?.list?.filter((item) => item.dt_txt.includes('12:00'))
   console.log('dailynoon', dailyNoonForecasts)
 
   const handleSelectCityChange = (selectedOption) => {
     setCurrentCity(selectedOption.value);
   }
+
+  console.log(currentWeather)
+  console.log(weatherForecast)
+
+//   const PageContainer = styled.div`
+//   /* background-image: url('/images/bluish.jpg'); */
+//   /* background-image: url('/images/dark-clouds.jpg'); */
+//   /* background-image: url('/images/golden-clouds.jpg'); */
+//   /* background-image: url('/images/soft-clouds.jpg'); */
+//   /* background-image: url('/images/sun-and-rain.jpg'); */
+//   /* background-image: url('/images/white-clouds.jpg'); */
+//   /* background-image: url(${(props) => props.weatherImage}); */
+//   background-image: url(${weatherImage});
+//   background-size: cover;
+//   background-position: center;
+//   /* background-color: #F7D5DF; */
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   padding: 50px 20px 20px 20px;
+//   min-height: 100vh;
+//   /* border: 10px solid blue; */
+// `
 
   return (
     <PageContainer>

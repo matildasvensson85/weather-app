@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import styled from 'styled-components'
+import React, { useState } from 'react';
+import styled from 'styled-components';
 
 const AccordionHeader = styled.button`
 cursor: pointer;
@@ -13,19 +13,20 @@ margin: 0 0 10px 0;
   :hover {
   background-color: #B72C72;
   }  
-`
+`;
+
 const AccordionContent = styled.div`
 overflow: hidden;
 max-height: ${(props) => (props.open ? '100%' : '0')};
 width: 100%;
-`
+`;
 
 export const Accordion = ({ header, content }) => {
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(false);
 
   const toggleAccordion = () => {
-    setOpen(!open)
-  }
+    setOpen(!open);
+  };
 
   return (
     <>
@@ -36,5 +37,5 @@ export const Accordion = ({ header, content }) => {
         {content}
       </AccordionContent>
     </>
-  )
-}
+  );
+};

@@ -32,7 +32,6 @@ const H2 = styled.h2`
   font-size: 16px;
   margin: 0 4px 0 0;
   font-weight: bold;
-  color: #1F479F; 
   font-family: 'Helvetica', sans-serif;
   color: ${(props) => (props.show ? 'white' : 'none')};
   margin-left: ${(props) => (props.show ? '5px' : '0px')};
@@ -41,7 +40,6 @@ const H2 = styled.h2`
 const DateText = styled.span`
   font-size: 16px;
   margin-right: 10px;
-  color: #1F479F; 
   font-family: 'Helvetica', sans-serif;
   color: ${(props) => (props.show ? 'white' : 'none')};
 `;
@@ -71,12 +69,12 @@ export const ForecastItem = ({ item, currentWeather }) => {
     setShowForecast(!showForecast);
   };
 
-  function capitalizeFirstLetter(str) {
+  const capitalizeFirstLetter = (str) => {
     if (str.length === 0) {
       return str;
     }
     return str.charAt(0).toUpperCase() + str.slice(1);
-  }
+  };
 
   return (
     <ContentWrapper key={item.dt}>
@@ -85,9 +83,9 @@ export const ForecastItem = ({ item, currentWeather }) => {
           <H2 show={showForecast}>{formatWeekday(currentWeather.dt, item.dt)}</H2>
           <DateText show={showForecast}>{formatDate(item.dt)}</DateText>
         </DateWrapper>
-        {showForecast
-          ? <FontAwesomeIcon icon={faChevronUp} style={{ color: 'white', fontSize: '14px', marginRight: '5px' }} />
-          : <FontAwesomeIcon icon={faChevronDown} style={{ color: '#1F479F', fontSize: '14px', marginRight: '5px' }} />}
+        <FontAwesomeIcon
+          icon={showForecast ? faChevronUp : faChevronDown}
+          style={{ color: showForecast ? 'white' : '#1F479F', fontSize: '14px', marginRight: '5px' }} />
       </AccordionHeader>
       <AccordionContent show={showForecast}>
         <WeatherText>{capitalizeFirstLetter(item.weather[0]?.description)}</WeatherText>
@@ -95,5 +93,5 @@ export const ForecastItem = ({ item, currentWeather }) => {
       </AccordionContent>
       <Line />
     </ContentWrapper>
-  )
-}
+  );
+};

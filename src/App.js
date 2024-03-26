@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
-import { CityHeader } from 'components/CityHeader'
-import { TodayOverview } from 'components/TodayOverview'
-import { ForecastItem } from './components/ForecastItem'
+import { CityHeader } from 'components/CityHeader';
+import { TodayOverview } from 'components/TodayOverview';
+import { ForecastItem } from './components/ForecastItem';
 
-const API_KEY = '4b089f476bd9961f1c727a0625472b1f'
-const cities = ['Stockholm,Sweden', 'London,GB', 'New York,US', 'Tokyo,JP', 'Paris,FR']
+const API_KEY = '4b089f476bd9961f1c727a0625472b1f';
+const cities = ['Stockholm,Sweden', 'London,GB', 'New York,US', 'Tokyo,JP', 'Paris,FR'];
 
 const PageContainer = styled.div`
   background-image: url('/images/golden-clouds.jpg');
@@ -17,7 +17,7 @@ const PageContainer = styled.div`
   align-items: center;
   padding: 50px 20px 20px 20px;
   min-height: 100vh;
-`
+`;
 
 const MainContent = styled.div`
 width: 100%;
@@ -25,7 +25,7 @@ max-width: 400px;
 background-color: #E8E8E8;
 border-radius: 30px;
 padding: 50px;
-`
+`;
 
 export const App = () => {
   const [currentCity, setCurrentCity] = useState('Stockholm,Sweden');
@@ -41,9 +41,9 @@ export const App = () => {
           [city]: {
             data
           }
-        }))
+        }));
       })
-      .catch((err) => console.error(err))
+      .catch((err) => console.error(err));
     fetch(
       `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&APPID=${API_KEY}`
     )
@@ -54,16 +54,16 @@ export const App = () => {
           [city]: {
             data
           }
-        }))
+        }));
       })
-      .catch((err) => console.error(err))
-  }
+      .catch((err) => console.error(err));
+  };
 
   useEffect(() => {
     cities.forEach((city) => getWeather(city));
-  }, [])
+  }, []);
 
-  const dailyNoonForecasts = weatherForecast[currentCity]?.data?.list?.filter((item) => item.dt_txt.includes('12:00'))
+  const dailyNoonForecasts = weatherForecast[currentCity]?.data?.list?.filter((item) => item.dt_txt.includes('12:00'));
 
   const handleSelectCityChange = (selectedOption) => {
     setCurrentCity(selectedOption.value);

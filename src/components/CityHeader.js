@@ -8,12 +8,12 @@ flex-direction: row;
 justify-content: space-between;
 align-items: center;
 margin-bottom: 40px;
-`
+`;
 
 const H1 = styled.h1`
 font-size: 30px;
 margin: 0;
-`
+`;
 
 const citySelector = {
   control: (provided) => ({
@@ -51,5 +51,5 @@ export const CityHeader = ({ cityName, handleSelectCityChange }) => {
         placeholder="Select location"
         styles={citySelector} />
     </HeaderSection>
-  )
-}
+  );
+};

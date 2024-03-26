@@ -9,23 +9,23 @@ const ContentWrapper = styled.div`
   justify-content: space-between;
   align-items: baseline;
   padding-bottom: 24px;
-`
+`;
 
 const DateWrapper = styled.div`
   display: flex;
   flex-direction: row;
   align-items: baseline;
   margin-bottom: 6px;
-`
+`;
 
 const WeatherWrapper = styled.div`
   margin-top: 16px;
-`
+`;
 
 const SunriseWrapper = styled.div`
   margin-top: 6px;
   display: flex;
-`
+`;
 
 const H2 = styled.h2`
   font-size: 16px;
@@ -33,7 +33,7 @@ const H2 = styled.h2`
   font-weight: bold;
   color: #1F479F; 
   font-family: 'Helvetica', sans-serif;
-`
+`;
 
 const DateText = styled.span`
   font-size: 16px;
@@ -49,7 +49,7 @@ const WeatherText = styled.p`
   font-family: 'Helvetica', sans-serif;
   margin-top: 0px;
   margin-bottom: 0px;
-`
+`;
 
 const SunriseText = styled.p`
   font-size: 18px;
@@ -58,13 +58,13 @@ const SunriseText = styled.p`
   font-family: 'Helvetica', sans-serif;
   margin-top: 5px;
   margin-bottom: 10px;
-`
+`;
 
 const Line = styled.div`
   height: 1px;
   background-color: #1F479F; 
   width: 100%;
-`
+`;
 
 export const TodayOverview = ({ currentWeather }) => {
   return (
@@ -85,4 +85,4 @@ export const TodayOverview = ({ currentWeather }) => {
       </SunriseWrapper>
     </ContentWrapper>
   );
-}
+};

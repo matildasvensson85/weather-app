@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
-import { CityHeader } from 'components/CityHeader';
-import { TodayOverview } from 'components/TodayOverview';
+import { CityHeader } from './components/CityHeader';
+import { TodayOverview } from './components/TodayOverview';
 import { ForecastItem } from './components/ForecastItem';
 
 const API_KEY = '4b089f476bd9961f1c727a0625472b1f';

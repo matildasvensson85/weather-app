@@ -33,8 +33,6 @@ const citySelector = {
 };
 
 export const CityHeader = ({ cityName, handleSelectCityChange }) => {
-  console.log('cityname', cityName)
-
   const options = [
     { value: 'London,GB', label: 'London' },
     { value: 'New York,US', label: 'New York' },

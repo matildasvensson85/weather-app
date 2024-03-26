@@ -2,11 +2,10 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronUp, faChevronDown } from '@fortawesome/free-solid-svg-icons';
-
 import { formatDate, formatWeekday } from 'utils/dateUtils';
 
 const ContentWrapper = styled.div`
-`
+`;
 
 const AccordionHeader = styled.div`
   position: relative;
@@ -19,15 +18,16 @@ const AccordionHeader = styled.div`
   margin: 0;
   background-color: ${(props) => (props.show ? '#1F479F' : 'none')};
   &:hover {
-    background-color: Tomato;
+    background-color: #8bc5da;
   }
- `
+ `;
 
 const DateWrapper = styled.div`
 display: flex;
 flex-direction: row;
 margin: 8px 0 8px 0;
-`
+`;
+
 const H2 = styled.h2`
   font-size: 16px;
   margin: 0 4px 0 0;
@@ -50,7 +50,7 @@ const AccordionContent = styled.div`
   padding: 8px 0 8px 0;
   background-color: #1F479F; 
   display: ${(props) => (props.show ? 'flex' : 'none')};
-`
+`;
 const WeatherText = styled.span`
   font-size: 16px;
   margin-left: 5px;
@@ -62,9 +62,15 @@ const Line = styled.div`
   height: 1px;
   background-color: #1F479F; 
   width: 100%;
-`
+`;
 
 export const ForecastItem = ({ item, currentWeather }) => {
+  const [showForecast, setShowForecast] = useState(false);
+
+  const toggleForecast = () => {
+    setShowForecast(!showForecast);
+  };
+
   function capitalizeFirstLetter(str) {
     if (str.length === 0) {
       return str;
@@ -72,16 +78,9 @@ export const ForecastItem = ({ item, currentWeather }) => {
     return str.charAt(0).toUpperCase() + str.slice(1);
   }
 
-  const [showForecast, setShowForecast] = useState(false);
-
-  const toggleForecast = () => {
-    setShowForecast(!showForecast);
-  };
-
   return (
     <ContentWrapper key={item.dt}>
       <AccordionHeader onClick={toggleForecast} show={showForecast}>
-        {/* <DateInfo> */}
         <DateWrapper>
           <H2 show={showForecast}>{formatWeekday(currentWeather.dt, item.dt)}</H2>
           <DateText show={showForecast}>{formatDate(item.dt)}</DateText>
@@ -89,9 +88,7 @@ export const ForecastItem = ({ item, currentWeather }) => {
         {showForecast
           ? <FontAwesomeIcon icon={faChevronUp} style={{ color: 'white', fontSize: '14px', marginRight: '5px' }} />
           : <FontAwesomeIcon icon={faChevronDown} style={{ color: '#1F479F', fontSize: '14px', marginRight: '5px' }} />}
-
       </AccordionHeader>
-
       <AccordionContent show={showForecast}>
         <WeatherText>{capitalizeFirstLetter(item.weather[0]?.description)}</WeatherText>
         <WeatherText>, feels like {Math.floor(item.main.feels_like)}</WeatherText>
